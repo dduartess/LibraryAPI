@@ -36,4 +36,24 @@ class LivroRepositoryTest {
         System.out.println(livro.getTitulo() + " - Cadastrado com sucesso!");
     }
 
+    @Test
+    void salvarCascadeTest(){
+        Livro livro = new Livro();
+        livro.setIsbn("1241244-8234");
+        livro.setPreco(BigDecimal.valueOf(100));
+        livro.setGenero(GeneroLivro.FICCAO);
+        livro.setTitulo("UFO");
+        livro.setDataPublicacao(LocalDate.of(2001,8,22));
+
+
+        Autor autor = new Autor();
+        autor.setNome("Daniel Duarte");
+        autor.setNacionalidade("Brasileiro");
+        autor.setDataNascimento(LocalDate.of(2002,4,10));
+
+        livro.setAutor(autor);
+        repository.save(livro);
+        System.out.println(livro.getTitulo() + " - Cadastrado com sucesso!");
+    }
+
 }
