@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
+import java.util.UUID;
+
 @SpringBootTest
 public class AutorRepositoryTest {
     @Autowired
@@ -20,5 +23,25 @@ public class AutorRepositoryTest {
 
         var autorSalvo = repository.save(autor);
         System.out.println("Autor salvo " + autorSalvo);
+    }
+
+    @Test
+    public void atualizarTest(){
+        var id = UUID.fromString("d60c0017-4135-4bb8-a813-69cde10ab260");
+
+        Optional<Autor> possivelAutor = repository.findById(id);
+
+        if (possivelAutor.isPresent()) {
+
+            Autor autorEncontrado = possivelAutor.get();
+            System.out.println("Dados do Autor: ");
+            System.out.println(autorEncontrado);
+
+            autorEncontrado.setNome("Abmael Duarte");
+            autorEncontrado.setNacionalidade("Brasileiro");
+            autorEncontrado.setDataNascimento(LocalDate.of(1970, 04, 03));
+
+            repository.save(autorEncontrado);
+        }
     }
 }
