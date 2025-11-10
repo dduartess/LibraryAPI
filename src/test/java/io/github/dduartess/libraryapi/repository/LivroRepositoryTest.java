@@ -37,6 +37,23 @@ class LivroRepositoryTest {
     }
 
     @Test
+    void SalvarEmSequencia(){
+        Livro livro = new Livro();
+        livro.setTitulo("Cronicas de um babaca");
+        livro.setIsbn("26155-5515");
+        livro.setPreco(BigDecimal.valueOf(50));
+        livro.setGenero(GeneroLivro.FICCAO);
+        livro.setDataPublicacao(LocalDate.of(2025,11,10));
+
+        Autor autor = new Autor();
+        autor.setNome("Gabriela Duarte");
+        autor.setDataNascimento(LocalDate.of(2008,07,11));
+        autor.setNacionalidade("Brasileira");
+
+        livro.setAutor(autor);
+        System.out.println(livro.getTitulo() + " - Livro cadastrado com sucesso!");
+    }
+    @Test
     void salvarCascadeTest(){
         Livro livro = new Livro();
         livro.setIsbn("1241244-8234");
