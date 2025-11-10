@@ -18,7 +18,7 @@ public class AutorRepositoryTest {
     @Test
     public void salvarTest(){
         Autor autor = new Autor();
-        autor.setNome("Daniel Duarte");
+        autor.setNome("Abmael Duarte");
         autor.setNacionalidade("Brasileiro");
         autor.setDataNascimento(LocalDate.of(2002,4,10));
 
