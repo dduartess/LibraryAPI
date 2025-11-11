@@ -122,4 +122,11 @@ class LivroRepositoryTest {
         lista.forEach(System.out::println);
     }
 
+    @Test
+    void pesquisaPorPrecoETitulo(){
+        var preco = BigDecimal.valueOf(100);
+        var titulo = "GISLEIA UMA EMPREENDEDORA CENTOPEIA";
+       List<Livro> livro = repository.findByTituloAndPreco(titulo,  preco);
+       livro.forEach(System.out::println);
+   }
 }
