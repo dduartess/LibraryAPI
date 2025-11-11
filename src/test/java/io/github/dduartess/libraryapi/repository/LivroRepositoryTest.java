@@ -74,6 +74,7 @@ class LivroRepositoryTest {
         repository.save(livro);
         System.out.println(livro.getTitulo() + " - Cadastrado com sucesso!");
     }
+
     @Test
     void atualizarAutorDoLivro(){
        UUID id = UUID.fromString("8746e284-d253-4f52-af90-63142d420aec");

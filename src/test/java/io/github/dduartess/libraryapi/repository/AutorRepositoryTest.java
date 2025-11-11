@@ -1,11 +1,15 @@
 package io.github.dduartess.libraryapi.repository;
 
 import io.github.dduartess.libraryapi.model.Autor;
+import io.github.dduartess.libraryapi.model.GeneroLivro;
+import io.github.dduartess.libraryapi.model.Livro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,6 +18,9 @@ import java.util.UUID;
 public class AutorRepositoryTest {
     @Autowired
     AutorRepository repository;
+
+    @Autowired
+    LivroRepository livroRepository;
 
     @Test
     public void salvarTest(){
@@ -61,5 +68,35 @@ public class AutorRepositoryTest {
     public void deletePorIdTest(){
         var id = UUID.fromString("dd9a8a56-fea2-40a9-adfe-fb889a1de097");
         repository.deleteById(id);
+    }
+
+    @Test
+    void salvarAutorComLivrosTest(){
+        Autor autor = new Autor();
+        autor.setNome("Gelson Alves");
+        autor.setNacionalidade("Brasileiro");
+        autor.setDataNascimento(LocalDate.of(1972, 9, 15));
+
+        Livro livro = new Livro();
+        livro.setIsbn("1241244-822232334");
+        livro.setPreco(BigDecimal.valueOf(75));
+        livro.setGenero(GeneroLivro.FICCAO);
+        livro.setTitulo("O rancho fundo");
+        livro.setDataPublicacao(LocalDate.of(2025,8,22));
+        livro.setAutor(autor);
+
+        Livro livro2 = new Livro();
+        livro2.setIsbn("1212341244-822232334");
+        livro2.setPreco(BigDecimal.valueOf(75));
+        livro2.setGenero(GeneroLivro.FICCAO);
+        livro2.setTitulo("O riacho seco");
+        livro2.setDataPublicacao(LocalDate.of(2021,8,22));
+        livro2.setAutor(autor);
+
+        autor.setLivros(new ArrayList<>());
+        autor.getLivros().add(livro);
+        autor.getLivros().add(livro2);
+
+        repository.save(autor);
     }
 }
