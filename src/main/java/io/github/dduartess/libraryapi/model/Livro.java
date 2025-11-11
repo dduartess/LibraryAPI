@@ -1,19 +1,18 @@
 package io.github.dduartess.libraryapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "livro")
 @Data
-
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString(exclude = "autor")
 public class Livro {
 
     @Id
@@ -30,9 +29,7 @@ public class Livro {
     @Column(precision = 18 , scale = 2)
     private BigDecimal preco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="id_autor")
     private Autor autor;
-
-
 }

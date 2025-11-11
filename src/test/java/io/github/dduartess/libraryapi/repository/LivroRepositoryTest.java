@@ -6,6 +6,7 @@ import io.github.dduartess.libraryapi.model.Livro;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -96,8 +97,9 @@ class LivroRepositoryTest {
     }
 
     @Test
+    @Transactional
     void buscarLivroTest(){
-        UUID id = UUID.fromString("8746e284-d253-4f52-af90-63142d420aec");
+        UUID id = UUID.fromString("494489a5-91a6-4f92-9e65-bbc4d078e32e");
         Livro livro = repository.findById(id).orElse(null);
 
         System.out.println("Livro: ");
